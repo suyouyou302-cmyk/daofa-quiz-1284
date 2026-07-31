@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#163b67" />
+    <title>道法选择题速刷</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">浦东考点 · 初中道法选择题</p>
+          <h1>道法选择题速刷</h1>
+          <p class="hero-copy">先练高频知识点，再回看错因。题目为依据所给复习资料整理的原创变式题。</p>
+          <strong id="bank-count" class="bank-count">题库加载中…</strong>
+        </div>
+        <div class="score-card" aria-live="polite">
+          <span>本轮得分</span>
+          <strong id="score">0 / 0</strong>
+          <small id="accuracy">正确率 --</small>
+        </div>
+      </section>
+
+      <section class="toolbar" aria-label="刷题设置">
+        <div class="mode-switch" role="group" aria-label="刷题模式">
+          <button class="mode active" data-mode="practice">顺序练习</button>
+          <button class="mode" data-mode="random">随机十题</button>
+          <button class="mode" data-mode="wrong">错题回练</button>
+        </div>
+        <label class="select-wrap">知识模块
+          <select id="module-filter"></select>
+        </label>
+        <button class="text-button" id="reset-progress">清空本轮</button>
+      </section>
+
+      <section class="progress-band" aria-label="答题进度">
+        <div class="progress-meta"><span id="question-count">第 1 题</span><span id="module-name">模块</span></div>
+        <div class="progress-track"><div id="progress-fill"></div></div>
+      </section>
+
+      <section class="question-card" id="question-card">
+        <div class="question-topline">
+          <span class="badge" id="source-badge">浦东高频</span>
+          <button class="star-button" id="mark-question" aria-label="收藏本题">☆</button>
+        </div>
+        <h2 id="question-text">正在准备题目…</h2>
+        <div class="options" id="options" role="radiogroup" aria-label="选择答案"></div>
+        <div class="feedback hidden" id="feedback" aria-live="polite">
+          <div class="feedback-title" id="feedback-title"></div>
+          <p id="explanation"></p>
+          <p class="memory-tip" id="memory-tip"></p>
+        </div>
+        <div class="question-actions">
+          <button class="secondary" id="prev-question">上一题</button>
+          <button class="primary" id="next-question">下一题</button>
+        </div>
+      </section>
+
+      <section class="knowledge-panel">
+        <div class="panel-heading"><div><p class="eyebrow">考点地图</p><h2>选择题先抓这四类易混点</h2></div></div>
+        <div class="knowledge-grid" id="knowledge-grid"></div>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
