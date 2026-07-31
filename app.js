@@ -110,7 +110,21 @@ const extraQuestions = [
   {m:'道德与法治综合',s:'易错辨析',q:'面对非正义行为，我们应（ ）。',o:['事不关己，高高挂起','坚守正义，依法维护公平正义','跟随多数人起哄','用暴力解决问题'],a:1,e:'个人守护正义要敢于斗争，讲究策略，依法维护正义。',t:'守护正义：敢于+善于。'},
   {m:'道德与法治综合',s:'易错辨析',q:'“敬人者，人恒敬之。”说明在人际交往中要（ ）。',o:['尊重他人','控制他人','贬低他人','只尊重自己'],a:0,e:'尊重是交往的起点，尊重他人也会赢得他人的尊重。',t:'尊重是交往起点。'},
 ];
-seedQuestions.push(...extraQuestions);
+const pdfSupplementQuestions = [
+  {m:'法治中国',s:'2026考前重点补充',q:'国家创制法律的两种基本形式是（ ）。',o:['制定或认可','起草或宣传','教育或引导','监督或审判'],a:0,e:'国家创制法律的两种基本形式是制定和认可，且须经过一定法律程序。',t:'“创制法律”对应制定、认可。'},
+  {m:'法治中国',s:'2026考前重点补充',q:'法律区别于道德等行为规范的最主要特征是（ ）。',o:['由国家强制力保证实施','对全体社会成员具有约束力','保护公民合法权益','规范社会成员行为'],a:0,e:'法律由国家强制力保证实施，这是法律区别于道德、纪律等的最主要特征。',t:'最主要特征：国家强制力。'},
+  {m:'法治中国',s:'2026考前重点补充',q:'根据违反法律的类别，违法行为可分为（ ）。',o:['一般违法和严重违法','民事、行政和刑事违法行为','故意违法和过失违法','道德失范和违法行为'],a:1,e:'按违反法律的类别，违法行为分为民事违法、行政违法和刑事违法。',t:'按“类别”分三类；按“危害性”分两类。'},
+  {m:'法治中国',s:'2026考前重点补充',q:'根据社会危害性的不同，违法行为可分为（ ）。',o:['民事违法和行政违法','一般违法和严重违法','刑事违法和民事违法','故意违法和过失违法'],a:1,e:'一般违法行为包括民事违法和行政违法；严重违法行为即刑事违法行为（犯罪）。',t:'“危害性”对应一般违法、严重违法。'},
+  {m:'法治中国',s:'2026考前重点补充',q:'犯罪最本质的特征是（ ）。',o:['严重社会危害性','触犯刑法','应受刑罚处罚','违反道德规范'],a:0,e:'犯罪具有严重社会危害性、刑事违法性和应受刑罚处罚性，其中最本质特征是严重社会危害性。',t:'犯罪最本质：严重社会危害性。'},
+  {m:'法治中国',s:'2026考前重点补充',q:'下列属于我国主刑的是（ ）。',o:['罚金','剥夺政治权利','有期徒刑','没收财产'],a:2,e:'主刑包括管制、拘役、有期徒刑、无期徒刑和死刑；其余属于附加刑。',t:'主刑“五种”，附加刑“四种”。'},
+  {m:'法治中国',s:'2026考前重点补充',q:'小李因违法受到罚款处罚。这种制裁属于（ ）。',o:['刑罚处罚','行政处罚','民事赔偿','道德谴责'],a:1,e:'行政制裁包括行政处分和行政处罚；罚款属于行政处罚。',t:'行政制裁：处分+处罚。'},
+  {m:'法治中国',s:'2026考前重点补充',q:'受到非法侵害时，公民可以向下列哪一机关控告、举报？（ ）。',o:['公安机关','任何商业机构','同学会','网络平台客服'],a:0,e:'公民可依法向公安机关、人民法院或人民检察院中的任一机关控告、举报。',t:'维权求助可找公安、法院、检察院。'},
+  {m:'法治中国',s:'2026考前重点补充',q:'当事人提起诉讼，应当向（ ）。',o:['人民法院','人民政府','人民检察院','居民委员会'],a:0,e:'诉讼是人民法院在诉讼当事人参与下，依照法定程序解决纠纷和冲突的活动。',t:'提起诉讼找人民法院。'},
+  {m:'法治中国',s:'2026考前重点补充',q:'诉讼通常分为（ ）。',o:['民事诉讼、行政诉讼、刑事诉讼','民事诉讼、经济诉讼、纪律诉讼','行政诉讼、家庭诉讼、刑事诉讼','调解、仲裁、诉讼'],a:0,e:'诉讼通常分为民事诉讼、行政诉讼和刑事诉讼三种类型。',t:'三类诉讼：民事、行政、刑事。'},
+  {m:'宪法与权利',s:'2026考前重点补充',q:'在我国，未成年人是指（ ）。',o:['未满十六周岁的公民','未满十八周岁的公民','正在读初中的学生','没有独立收入的人'],a:1,e:'在我国，未成年人是指未满十八周岁的公民。',t:'未成年人：未满18周岁。'},
+  {m:'宪法与权利',s:'2026考前重点补充',q:'保护未成年人合法权益的四道防线是（ ）。',o:['家庭、学校、社会和司法保护','家庭、社区、网络和司法保护','父母、教师、同学和警察保护','教育、道德、法律和纪律保护'],a:0,e:'保护未成年人合法权益的四道防线是家庭保护、学校保护、社会保护和司法保护。',t:'四道防线：家、校、社、司。'},
+];
+seedQuestions.push(...extraQuestions, ...pdfSupplementQuestions);
 
 // 每题对应一个独立知识点或真实情境；不使用换问法、换选项顺序的变式题。
 const questions = seedQuestions.map((item, index) => ({ ...item, id: `knowledge-${index + 1}` }));
@@ -127,16 +141,36 @@ const map = [
   ['世界与少年担当','经济全球化、人类命运共同体、中国担当与职业选择。'],
   ['国家安全与民族团结','总体国家安全观、国家利益、民族团结与祖国统一。'],
 ];
-const state = { mode:'practice', module:'全部模块', queue:[...questions], index:0, answered:{}, starred:new Set(JSON.parse(localStorage.getItem('df-stars') || '[]')) };
+const PROGRESS_KEY = 'df-progress-v2';
+const savedProgress = JSON.parse(localStorage.getItem(PROGRESS_KEY) || 'null');
+const questionById = new Map(questions.map(question => [question.id, question]));
+const restoredQueue = savedProgress?.queueIds?.map(id => questionById.get(id)).filter(Boolean) || [];
+const state = {
+  mode: savedProgress?.mode || 'practice',
+  module: savedProgress?.module || '全部模块',
+  queue: restoredQueue.length ? restoredQueue : [...questions],
+  index: Math.max(0, Math.min(savedProgress?.index || 0, Math.max(0, (restoredQueue.length || questions.length) - 1))),
+  answered: savedProgress?.answered || {},
+  starred: new Set(JSON.parse(localStorage.getItem('df-stars') || '[]')),
+  restoredQueue: restoredQueue.length > 0,
+};
 const $ = id => document.getElementById(id);
 const moduleFilter = $('module-filter');
 ['全部模块',...map.map(x=>x[0])].forEach(m=>moduleFilter.add(new Option(m,m)));
+moduleFilter.value = state.module;
+document.querySelectorAll('.mode').forEach(button => button.classList.toggle('active', button.dataset.mode === state.mode));
+function saveProgress(){
+  localStorage.setItem(PROGRESS_KEY, JSON.stringify({
+    mode: state.mode, module: state.module, index: state.index,
+    queueIds: state.queue.map(question => question.id), answered: state.answered,
+  }));
+}
 function shuffle(arr){return [...arr].sort(()=>Math.random()-.5)}
 function rebuild(){
   let base=state.module==='全部模块'?questions:questions.filter(x=>x.m===state.module);
   if(state.mode==='random') base=shuffle(base).slice(0,10);
   if(state.mode==='wrong') base=base.filter(q=>state.answered[q.id]?.correct===false);
-  state.queue=base; state.index=Math.min(state.index,Math.max(0,base.length-1)); render();
+  state.queue=base; state.index=Math.min(state.index,Math.max(0,base.length-1)); state.restoredQueue=false; saveProgress(); render();
 }
 function render(){
   const q=state.queue[state.index]; const total=state.queue.length;
@@ -149,10 +183,10 @@ function render(){
   q.o.forEach((text,i)=>{const b=document.createElement('button');b.className='option';b.setAttribute('role','radio');b.innerHTML=`<span class="option-letter">${'ABCD'[i]}</span><span>${text}</span>`;if(saved){b.disabled=true;if(i===q.a)b.classList.add('correct');if(i===saved.choice&&i!==q.a)b.classList.add('wrong')} b.onclick=()=>answer(q,i);$('options').appendChild(b)});
   if(saved){showFeedback(q,saved.correct)}else $('feedback').classList.add('hidden');
 }
-function answer(q,choice){if(state.answered[q.id])return;const correct=choice===q.a;state.answered[q.id]={choice,correct};render();}
+function answer(q,choice){if(state.answered[q.id])return;const correct=choice===q.a;state.answered[q.id]={choice,correct};saveProgress();render();}
 function showFeedback(q,correct){const box=$('feedback');box.className=`feedback ${correct?'correct':'wrong'}`;$('feedback-title').textContent=correct?'回答正确！':'这题先记住正确判断。';$('explanation').textContent=`答案：${'ABCD'[q.a]}。${q.e}`;$('memory-tip').textContent=`记忆提示：${q.t}`;}
 function score(){const vals=Object.values(state.answered);const right=vals.filter(x=>x.correct).length;$('score').textContent=`${right} / ${vals.length}`;$('accuracy').textContent=vals.length?`正确率 ${Math.round(right/vals.length*100)}%`:'正确率 --';}
 document.querySelectorAll('.mode').forEach(b=>b.onclick=()=>{state.mode=b.dataset.mode;state.index=0;document.querySelectorAll('.mode').forEach(x=>x.classList.toggle('active',x===b));rebuild();});
-moduleFilter.onchange=e=>{state.module=e.target.value;state.index=0;rebuild()};$('next-question').onclick=()=>{if(state.index<state.queue.length-1){state.index++;render()}};$('prev-question').onclick=()=>{if(state.index>0){state.index--;render()}};$('mark-question').onclick=()=>{const q=state.queue[state.index];if(state.starred.has(q.id))state.starred.delete(q.id);else state.starred.add(q.id);localStorage.setItem('df-stars',JSON.stringify([...state.starred]));render()};$('reset-progress').onclick=()=>{state.answered={};state.index=0;rebuild()};
+moduleFilter.onchange=e=>{state.module=e.target.value;state.index=0;rebuild()};$('next-question').onclick=()=>{if(state.index<state.queue.length-1){state.index++;saveProgress();render()}};$('prev-question').onclick=()=>{if(state.index>0){state.index--;saveProgress();render()}};$('mark-question').onclick=()=>{const q=state.queue[state.index];if(state.starred.has(q.id))state.starred.delete(q.id);else state.starred.add(q.id);localStorage.setItem('df-stars',JSON.stringify([...state.starred]));saveProgress();render()};$('reset-progress').onclick=()=>{state.answered={};state.index=0;rebuild()};
 const grid=$('knowledge-grid');map.forEach(([title,text])=>{const el=document.createElement('div');el.className='knowledge-item';el.innerHTML=`<strong>${title}</strong><p>${text}</p>`;grid.appendChild(el)});
-const observer=new MutationObserver(score);observer.observe($('options'),{childList:true});$('bank-count').textContent=`当前题库 ${questions.length.toLocaleString()} 道独立选择题 · 按知识点持续补充`;rebuild();score();
+const observer=new MutationObserver(score);observer.observe($('options'),{childList:true});$('bank-count').textContent=`当前题库 ${questions.length.toLocaleString()} 道独立选择题 · 按知识点持续补充`;if(state.restoredQueue)render();else rebuild();score();
