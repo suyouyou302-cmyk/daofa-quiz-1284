@@ -112,32 +112,8 @@ const extraQuestions = [
 ];
 seedQuestions.push(...extraQuestions);
 
-// 将每个核心考点扩展为多种干扰项顺序与表述形式。这样每次练习不仅
-// 换答案位置，也会换成常见的“教材判断 / 易错辨析 / 巩固训练”问法。
-// 核心题均保留完整解析，避免只增加无意义的题号。
-const coreQuestions = seedQuestions.map((item, index) => ({ ...item, id: `core-${index + 1}` }));
-const optionOrders = [
-  [0,1,2,3],[0,1,3,2],[0,2,1,3],[0,2,3,1],[0,3,1,2],[0,3,2,1],
-  [1,0,2,3],[1,2,0,3],[1,3,0,2],[2,0,1,3],[2,1,3,0],[3,0,2,1],
-];
-const leadIns = ['', '教材判断：', '巩固训练：', '易错辨析：', '请结合所学知识判断：', '下列说法中，正确的是：'];
-const expandedQuestions = [];
-coreQuestions.forEach((base, index) => {
-  optionOrders.forEach((order, variant) => {
-    const correctIndex = order.indexOf(base.a);
-    let stem = base.q;
-    if (variant > 0 && leadIns[variant % leadIns.length] !== '') stem = `${leadIns[variant % leadIns.length]}${base.q}`;
-    expandedQuestions.push({
-      ...base,
-      id: `${base.id}-v${variant + 1}`,
-      q: stem,
-      o: order.map(i => base.o[i]),
-      a: correctIndex,
-      s: `${base.s} · 变式${variant + 1}`,
-    });
-  });
-});
-const questions = expandedQuestions;
+// 每题对应一个独立知识点或真实情境；不使用换问法、换选项顺序的变式题。
+const questions = seedQuestions.map((item, index) => ({ ...item, id: `knowledge-${index + 1}` }));
 
 const map = [
   ['成长与学习','中学生活、学习方法、认识自己、友谊、师生与亲情。'],
@@ -179,4 +155,4 @@ function score(){const vals=Object.values(state.answered);const right=vals.filte
 document.querySelectorAll('.mode').forEach(b=>b.onclick=()=>{state.mode=b.dataset.mode;state.index=0;document.querySelectorAll('.mode').forEach(x=>x.classList.toggle('active',x===b));rebuild();});
 moduleFilter.onchange=e=>{state.module=e.target.value;state.index=0;rebuild()};$('next-question').onclick=()=>{if(state.index<state.queue.length-1){state.index++;render()}};$('prev-question').onclick=()=>{if(state.index>0){state.index--;render()}};$('mark-question').onclick=()=>{const q=state.queue[state.index];if(state.starred.has(q.id))state.starred.delete(q.id);else state.starred.add(q.id);localStorage.setItem('df-stars',JSON.stringify([...state.starred]));render()};$('reset-progress').onclick=()=>{state.answered={};state.index=0;rebuild()};
 const grid=$('knowledge-grid');map.forEach(([title,text])=>{const el=document.createElement('div');el.className='knowledge-item';el.innerHTML=`<strong>${title}</strong><p>${text}</p>`;grid.appendChild(el)});
-const observer=new MutationObserver(score);observer.observe($('options'),{childList:true});$('bank-count').textContent=`当前题库 ${questions.length.toLocaleString()} 道选择题 · 100 个核心考点`;rebuild();score();
+const observer=new MutationObserver(score);observer.observe($('options'),{childList:true});$('bank-count').textContent=`当前题库 ${questions.length.toLocaleString()} 道独立选择题 · 按知识点持续补充`;rebuild();score();
