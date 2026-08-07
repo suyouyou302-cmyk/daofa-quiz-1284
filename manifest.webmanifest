@@ -1,0 +1,11 @@
+{
+  "name": "道法选择题速刷",
+  "short_name": "道法速刷",
+  "description": "初中道德与法治选择题刷题本",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f7f3e8",
+  "theme_color": "#163b67",
+  "lang": "zh-CN"
+}
