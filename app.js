@@ -1,192 +1,273 @@
-const seedQuestions = [
-  {m:'权利与法治',s:'2025 浦东真题指向',q:'下列属于公民基本权利的是（ ）。',o:['依法纳税','维护国家安全','言论自由','依法服兵役'],a:2,e:'言论自由属于政治自由，是公民基本权利；其余三项均属于公民基本义务。',t:'先分清：权利能享有，义务须履行。'},
-  {m:'权利与法治',s:'2025 浦东真题指向',q:'小明在学校参加学习小组，在家做力所能及的家务，在社区参与卫生监督。这说明（ ）。',o:['责任产生于社会关系中的相互承诺','未成年人不需要承担社会责任','角色不同，责任完全相同','承担责任一定获得物质回报'],a:0,e:'不同角色意味着不同责任；责任来源包括对他人的承诺、职业要求、道德规范和法律规定等。',t:'关键词“学校、家庭、社区”常考角色与责任。'},
-  {m:'权利与法治',s:'2025 浦东真题指向',q:'下列做法中，属于侵犯他人隐私权的是（ ）。',o:['公开他人的私人信件内容','依法搜查犯罪嫌疑人的住所','新闻报道中使用公众人物公开照片','公安机关依法监听犯罪嫌疑人电话'],a:0,e:'私人信件内容属于个人私密信息，未经同意公开会侵犯隐私权；其余均需结合“依法”或公开信息判断。',t:'隐私题先找“未经同意、非依法、私密信息”。'},
-  {m:'权利与法治',s:'高频易混',q:'公民既是合法权利的享有者，也是法定义务的承担者。这要求我们（ ）。',o:['只在权利受侵害时履行义务','依法行使权利，自觉履行义务','权利与义务可以相互替代','先享有权利再选择是否履行义务'],a:1,e:'权利义务相统一，公民既要依法行使权利，也要自觉履行法定义务。',t:'看到“既是……也是……”优先想权利义务统一。'},
-  {m:'民主与制度',s:'2025、2026 浦东高频',q:'在我国，保障人民当家作主的根本政治制度是（ ）。',o:['人民代表大会制度','中国共产党领导的多党合作和政治协商制度','民族区域自治制度','基层群众自治制度'],a:0,e:'人民代表大会制度是我国根本政治制度；后面三项属于基本政治制度。',t:'“根本政治制度”只对应人民代表大会制度。'},
-  {m:'民主与制度',s:'2025 浦东真题指向',q:'社会主义民主政治的特有形式和独特优势是（ ）。',o:['选举民主','协商民主','基层民主','民主监督'],a:1,e:'有事好商量、众人的事情由众人商量，是人民民主的真谛；协商民主是特有形式和独特优势。',t:'“特有形式、独特优势”锁定协商民主。'},
-  {m:'民主与制度',s:'2026 浦东真题指向',q:'下列关于人民政协的表述正确的是（ ）。',o:['是国家权力机关','依法行使审判权','履行政治协商、民主监督、参政议政职能','由选民直接选举产生'],a:2,e:'人民政协是中国人民爱国统一战线组织，不是国家机关，主要职能是政治协商、民主监督和参政议政。',t:'政协不是人大，更不是国家机关。'},
-  {m:'民主与制度',s:'高频易混',q:'村民通过村民会议讨论本村公共事务，体现了（ ）。',o:['民族区域自治制度','基层群众自治制度','人民代表大会制度','司法制度'],a:1,e:'村委会、居委会是基层群众性自治组织，体现基层群众自治制度。',t:'村委会、居委会都不是国家机关。'},
-  {m:'民主与制度',s:'国家机构',q:'全国人民代表大会是（ ）。',o:['最高国家行政机关','最高国家权力机关','最高审判机关','最高监察机关'],a:1,e:'全国人大是最高国家权力机关；国务院、最高人民法院、国家监察委员会分别对应其他机关。',t:'“最高国家权力机关”只对应全国人大。'},
-  {m:'民主与制度',s:'国家机构',q:'人民法院依法审理刑事、民事和行政案件，说明人民法院是（ ）。',o:['国家权力机关','国家行政机关','国家审判机关','法律监督机关'],a:2,e:'人民法院是国家审判机关；人民检察院是法律监督机关。',t:'法院审判，检察院法律监督。'},
-  {m:'经济与改革',s:'2026 浦东真题指向',q:'我国基本经济制度包括（ ）。',o:['公有制为主体、多种所有制经济共同发展','按劳分配为主体、多种分配方式并存','社会主义市场经济体制','以上都是'],a:3,e:'我国基本经济制度包括所有制、分配制度和社会主义市场经济体制三个方面。',t:'基本经济制度要记“三件套”。'},
-  {m:'经济与改革',s:'复习资料重点',q:'下列收入中，属于按劳分配的是（ ）。',o:['公有制单位职工的工资和奖金','储蓄存款利息','出租房屋获得的租金','技术入股所得分红'],a:0,e:'按劳分配以公有制为前提，劳动者按劳动贡献取得工资、奖金等；其余属于按生产要素分配。',t:'公有制单位的劳动报酬，优先判断按劳分配。'},
-  {m:'经济与改革',s:'复习资料重点',q:'社会主义市场经济体制中，市场和政府的关系是（ ）。',o:['只发挥市场作用','只发挥政府作用','市场在资源配置中起决定性作用，更好发挥政府作用','市场与政府相互排斥'],a:2,e:'市场是“看不见的手”，政府科学宏观调控是“看得见的手”，二者有机结合。',t:'市场“决定性作用”，政府“宏观调控”。'},
-  {m:'经济与改革',s:'复习资料重点',q:'改革开放被称为决定当代中国命运的（ ）。',o:['唯一道路','关键一招','根本制度','最终目标'],a:1,e:'改革开放是强国之路，是决定当代中国命运的关键一招，也是决定实现民族复兴的关键一招。',t:'“关键一招”=改革开放。'},
-  {m:'经济与改革',s:'复习资料重点',q:'共同富裕是（ ）。',o:['全体人民同步富裕','中国特色社会主义的本质要求','只靠个人勤劳就能实现','平均主义的另一种说法'],a:1,e:'共同富裕不是同步富裕、同等富裕或平均主义，而是全体人民共享发展成果。',t:'共同富裕常与“同步、同等、平均”设陷阱。'},
-  {m:'创新与教育',s:'2026 浦东真题指向',q:'当今国际竞争的实质是以经济和科技实力为基础的综合国力的较量。科技创新能力已经成为（ ）。',o:['综合国力竞争的决定性因素','所有国家发展的唯一因素','改革开放的替代品','个人成功的唯一条件'],a:0,e:'科技创新能力已成为综合国力竞争的决定性因素，但不能表述为发展的唯一因素。',t:'注意“决定性因素”不等于“唯一因素”。'},
-  {m:'创新与教育',s:'复习资料重点',q:'我国科技创新现状的正确表述是（ ）。',o:['已经建成世界科技创新强国','已进入创新型国家行列，但仍需提高科技创新能力','科技创新没有取得任何成就','科技发展完全不需要自主创新'],a:1,e:'我国一些关键核心技术实现突破，已进入创新型国家行列；建设世界科技创新强国仍任重道远。',t:'“创新型国家”≠“创新强国”。'},
-  {m:'创新与教育',s:'复习资料重点',q:'建设创新型国家，国家应当（ ）。',o:['只依赖国外核心技术','坚持科教兴国、人才强国、创新驱动发展战略','取消对知识产权的保护','把创新完全交给少数科学家'],a:1,e:'国家应实施科教兴国、人才强国和创新驱动发展战略，坚定走中国特色自主创新道路。',t:'三大战略常成组出现。'},
-  {m:'创新与教育',s:'复习资料重点',q:'教育的重要性在于（ ）。',o:['教育是民族振兴、社会进步的基石','教育只服务于升学考试','教育与科技人才没有关系','教育可以替代劳动'],a:0,e:'教育是民族振兴、社会进步的基石，是提高国民素质、培养创新型人才、促进人的全面发展的根本途径。',t:'教育：基石、根本途径。'},
-  {m:'文化·安全·网络',s:'2025 浦东真题指向',q:'诚信是社会主义核心价值观在公民个人层面的价值准则之一。下列对诚信认识正确的是（ ）。',o:['小事可以不讲诚信','诚信是一个人安身立命之本','只要讲诚信就一定成功','诚信只适用于商业活动'],a:1,e:'诚信是个人安身立命之本，也是企业无形资产；不能把诚信功利化或局限化。',t:'“安身立命之本”=诚信。'},
-  {m:'文化·安全·网络',s:'2025 浦东真题指向',q:'互联网丰富了民主形式、拓宽了民主渠道。这说明网络（ ）。',o:['是公民参与民主生活的唯一途径','有利于公民更便利、有序地参与社会生活和政治生活','可以替代所有国家机关','使公民不再承担责任'],a:1,e:'网络促进民主政治进步，公民仍须依法、有序参与网络生活。',t:'网络题警惕“唯一、完全替代、不再”等绝对词。'},
-  {m:'文化·安全·网络',s:'2026 浦东真题指向',q:'国家安全是国家生存与发展的重要保障。维护国家安全是（ ）。',o:['国家机关的事，与公民无关','每个公民义不容辞的责任','只在战争时期才需要做的事','可以用任何方式维护的事'],a:1,e:'维护国家安全、荣誉和利益是每个公民的基本义务，必须在法律范围内进行。',t:'国家安全：人人有责，但必须依法。'},
-  {m:'文化·安全·网络',s:'2026 浦东真题指向',q:'下列体现爱国主义精神的是（ ）。',o:['维护国家统一和民族团结','传播民族分裂言论','诋毁民族文化','泄露国家秘密'],a:0,e:'爱国主义的本质是坚持爱国和爱党、爱社会主义高度统一，维护国家统一和民族团结是具体表现。',t:'爱国题常和维护国家统一、民族团结相连。'},
-  {m:'文化·安全·网络',s:'复习资料重点',q:'社会主义核心价值观国家层面的价值目标是（ ）。',o:['富强、民主、文明、和谐','自由、平等、公正、法治','爱国、敬业、诚信、友善','团结、勤劳、勇敢、自强'],a:0,e:'国家层面：富强民主文明和谐；社会层面：自由平等公正法治；个人层面：爱国敬业诚信友善。',t:'按“国家—社会—个人”三层记忆。'},
-];
+(function () {
+  "use strict";
 
-const extraQuestions = [
-  {m:'成长与学习',s:'七年级基础',q:'进入初中后，面对新课程和新同学，较为合理的做法是（ ）。',o:['否定过去的自己','主动适应，规划学习','完全依赖父母安排','只关注考试分数'],a:1,e:'中学生活提供多种发展机会，需要主动适应、确立目标并付诸行动。',t:'新阶段的关键词是“主动适应”。'},
-  {m:'成长与学习',s:'七年级基础',q:'“独立思考并不等同于一味追求独特。”这提醒我们（ ）。',o:['拒绝所有他人意见','有自己见解，也能接纳合理意见','只相信多数人的看法','为了独特故意反对他人'],a:1,e:'独立思考表现为不人云亦云，同时能理性接纳他人合理、正确的意见。',t:'独立不等于固执。'},
-  {m:'成长与学习',s:'七年级基础',q:'“学而不思则罔，思而不学则殆”启示我们（ ）。',o:['学习只要勤奋即可','要在学习中善于思考','只需要独立学习','学习只能在课堂完成'],a:1,e:'学习需要主动、合作、探究，也需要学思结合。',t:'古语题先找对应的学习方式。'},
-  {m:'成长与学习',s:'七年级基础',q:'小文总觉得自己不如同学。要正确认识自己，他可以（ ）。',o:['只和成绩最好的人比较','从生理、心理和社会等方面认识自己','完全依据别人的评价','故意夸大自己的优点'],a:1,e:'可以从多个方面认识自己，既要自我评价，也要重视他人评价。',t:'认识自己要“全面、客观”。'},
-  {m:'成长与学习',s:'七年级基础',q:'下列属于正确学习观的是（ ）。',o:['学习只为获得好成绩','学习没有终点，要终生学习','离开学校就不需要学习','学习只能接受知识'],a:1,e:'学习伴随人的一生，既包括知识获取，也包括能力培养和品德提升。',t:'“学习没有终点”是常用表述。'},
-  {m:'成长与学习',s:'七年级基础',q:'朋友对小安提出批评，小安应该（ ）。',o:['立刻断绝友谊','认真思考，有则改之','要求朋友只说好话','在网络上攻击朋友'],a:1,e:'友谊需要理解、尊重、关怀和宽容，批评有助于我们完善自己。',t:'真朋友的批评有利于成长。'},
-  {m:'成长与学习',s:'七年级基础',q:'建立友谊需要开放自己。下列做法恰当的是（ ）。',o:['等待别人主动接近自己','敞开心扉，主动表达','要求朋友完全听从自己','用秘密交换友谊'],a:1,e:'建立友谊需要开放自己，也需要持续行动和真诚待人。',t:'开放自己+持续行动。'},
-  {m:'成长与学习',s:'七年级基础',q:'网上交友时，正确的做法是（ ）。',o:['随意公开家庭住址','轻易答应线下见面','增强自我保护意识','把网友都当作现实朋友'],a:2,e:'网络交往有虚拟性，要慎重结交网友，增强自我保护意识。',t:'网络交友优先考虑安全。'},
-  {m:'成长与学习',s:'七年级基础',q:'面对老师的表扬和批评，正确态度是（ ）。',o:['只接受表扬','理解老师良苦用心，理性对待','批评后立即顶撞','把老师的话告诉同学嘲笑'],a:1,e:'师生交往要彼此尊重，正确对待老师的表扬和批评。',t:'尊重、理解、沟通。'},
-  {m:'成长与学习',s:'七年级基础',q:'孝亲敬长需要落实在行动中，下列做法正确的是（ ）。',o:['只在节日送礼物','主动分担家务、关心家人','认为孝敬只是成年后的事','把父母的关心视为束缚'],a:1,e:'尽孝在当下，从关心、体谅和分担家务等小事做起。',t:'孝亲敬长，贵在日常。'},
-  {m:'青春·情绪·集体',s:'七年级下册',q:'青春期的矛盾心理是成长中的正常现象。面对它，我们可以（ ）。',o:['封闭自己，不与人交流','向老师、父母、朋友寻求帮助','用冲动行为发泄','认为自己已经无可救药'],a:1,e:'可以参加集体活动、求助他人、培养兴趣爱好等，积极调节矛盾心理。',t:'矛盾心理需要“积极调适”。'},
-  {m:'青春·情绪·集体',s:'七年级下册',q:'“止于至善”要求我们（ ）。',o:['只做大事，不做小事','从点滴小事做起，积少成多','追求完美而否定自己','完全模仿榜样'],a:1,e:'止于至善要求有自己的格调，有“至善”的追求，从小事做起。',t:'止于至善：小事、积累、自省。'},
-  {m:'青春·情绪·集体',s:'七年级下册',q:'情绪的作用具有两面性。积极情绪可以（ ）。',o:['使人永远不犯错','激励我们克服困难、努力向上','让人失去理智','替代所有实际行动'],a:1,e:'积极情绪有助于身心健康和行动，消极情绪也可能促使我们反思。',t:'情绪是双刃剑。'},
-  {m:'青春·情绪·集体',s:'七年级下册',q:'考试失利后，小华去操场跑步并分析错题。这属于（ ）。',o:['压抑情绪','合理调节情绪','放任不良情绪','逃避学习'],a:1,e:'转移注意、合理宣泄、改变认知评价等，都是调节情绪的常用方法。',t:'跑步可转移注意、合理宣泄。'},
-  {m:'青春·情绪·集体',s:'七年级下册',q:'美好集体的特点是（ ）。',o:['只强调竞争','民主、公正、充满关怀与友爱','成员完全没有差异','由少数人决定一切'],a:1,e:'美好集体是民主、公正、充满关怀与友爱、善于合作、充满活力的。',t:'美好集体四个关键词。'},
-  {m:'青春·情绪·集体',s:'七年级下册',q:'集体规则与个人意愿发生冲突时，我们应（ ）。',o:['拒绝遵守任何规则','理解集体要求，寻找解决冲突的平衡点','煽动同学一起违反规则','只维护个人利益'],a:1,e:'个人意愿与集体规则可能有冲突，应理解集体要求并寻求合理解决。',t:'不是对立，而是寻找平衡。'},
-  {m:'青春·情绪·集体',s:'七年级下册',q:'下列做法有利于集体发展的有（ ）。',o:['只关心个人得失','在集体中各尽所能、发挥所长','遇到困难就推卸责任','排斥与自己不同的同学'],a:1,e:'集体建设需要每个人的智慧和力量，要各尽其能、团结协作。',t:'建设集体：各尽其能。'},
-  {m:'青春·情绪·集体',s:'七年级下册',q:'集体生活成就我，主要表现在（ ）。',o:['能让每个人完全一样','有助于发展个性、涵养品格','使个人不再承担责任','只提高学习成绩'],a:1,e:'在集体中可以涵养品格、发展个性、不断认识和完善自我。',t:'集体：品格+个性。'},
-  {m:'青春·情绪·集体',s:'七年级下册',q:'面对他人的负面情绪，恰当做法是（ ）。',o:['故意取笑对方','给予关心，帮助对方调节','立刻传播对方的秘密','要求对方永远不能难过'],a:1,e:'人与人之间的情绪会相互感染，要用恰当方式表达情绪并关心他人。',t:'情绪表达要顾及他人感受。'},
-  {m:'青春·情绪·集体',s:'七年级下册',q:'“行己有耻”要求我们（ ）。',o:['知廉耻，懂荣辱，有所为有所不为','只关注外在评价','只要不违法就可以做任何事','从不承认错误'],a:0,e:'行己有耻要求有知耻之心，提高辨别“耻”的能力，树立底线意识。',t:'行己有耻=有底线。'},
-  {m:'社会责任与网络',s:'八年级上册',q:'亲社会行为的表现有（ ）。',o:['谦让、分享、帮助他人、关心社会发展','沉迷网络游戏','拒绝参加任何社会实践','只关注个人生活'],a:0,e:'亲社会行为有利于养成良好行为习惯，塑造健康人格，形成正确价值观。',t:'亲社会：谦让、分享、帮助、关心。'},
-  {m:'社会责任与网络',s:'八年级上册',q:'参加志愿服务活动有利于（ ）。',o:['逃避社会责任','养成亲社会行为','获得特权','不再需要学习'],a:1,e:'亲社会行为在人际交往和社会实践中养成，志愿服务是重要途径。',t:'实践活动是养成亲社会行为的途径。'},
-  {m:'社会责任与网络',s:'八年级上册',q:'网络信息良莠不齐。面对网络谣言，我们应（ ）。',o:['立即转发给更多人','不信谣、不传谣，依法举报','用谣言反击谣言','只要点击量高就相信'],a:1,e:'要提高媒介素养，辨析网络信息，遵守道德和法律。',t:'网络谣言：不信、不传、举报。'},
-  {m:'社会责任与网络',s:'八年级上册',q:'“自由不等于随心所欲。”网络生活中这句话要求我们（ ）。',o:['不再使用网络','遵守网络规则和法律','可以匿名侮辱他人','只要不被发现就可以违法'],a:1,e:'网络无限，自由有界。任何自由都要在规则和法律允许的范围内行使。',t:'自由与规则相统一。'},
-  {m:'社会责任与网络',s:'八年级上册',q:'“人无信不立”主要说明（ ）。',o:['诚信是个人安身立命之本','诚信只对商家重要','善意谎言一定违法','失信没有任何后果'],a:0,e:'诚信是个人安身立命之本，也是社会文明和谐的重要基础。',t:'诚信题的核心句。'},
-  {m:'社会责任与网络',s:'八年级上册',q:'承担责任往往伴随着代价与回报。对此正确认识是（ ）。',o:['承担责任只会带来代价','承担责任一定有金钱回报','应义无反顾地担当责任','可以把责任全部推给他人'],a:2,e:'承担责任可能付出时间、精力等，也会获得良好评价、能力提升等回报，应担当责任。',t:'责任：代价与回报并存。'},
-  {m:'社会责任与网络',s:'八年级上册',q:'服务社会、奉献社会，需要我们（ ）。',o:['积极参与社会公益活动','等有时间再说','只做有报酬的事','拒绝关心社会发展'],a:0,e:'服务和奉献社会需要积极参加社会公益活动，热爱劳动、爱岗敬业。',t:'公益活动是常见落点。'},
-  {m:'社会责任与网络',s:'八年级上册',q:'维护国家利益是每个公民的基本义务。下列做法正确的是（ ）。',o:['泄露国家秘密换取利益','维护国家统一和民族团结','编造贬损国家形象的信息','损害国旗国徽尊严'],a:1,e:'维护国家统一、民族团结和国家安全、荣誉、利益，是公民的基本义务。',t:'国家利益高于一切。'},
-  {m:'社会责任与网络',s:'八年级上册',q:'劳动是财富的源泉，也是幸福的源泉。青少年应（ ）。',o:['轻视体力劳动','尊重劳动者，培养劳动习惯','认为劳动只属于成年人','用金钱替代劳动'],a:1,e:'劳动创造美好生活，要尊重劳动、热爱劳动、辛勤劳动。',t:'劳动创造财富和幸福。'},
-  {m:'社会责任与网络',s:'八年级上册',q:'下列属于违法行为的是（ ）。',o:['遵守交通规则','捡到财物归还失主','散布他人隐私照片','参加社会实践'],a:2,e:'侵犯他人隐私、损害他人合法权益的行为可能承担法律责任。',t:'违法行为必然违反法律。'},
-  {m:'宪法与权利',s:'八年级下册',q:'我国宪法的核心价值追求是（ ）。',o:['规范国家权力运行以保障公民权利','扩大国家机关权力','限制公民所有自由','只保护少数人权利'],a:0,e:'宪法通过组织国家机构、规范权力运行，保障公民权利实现。',t:'宪法核心：规范权力、保障权利。'},
-  {m:'宪法与权利',s:'八年级下册',q:'宪法是国家的根本法，因为它（ ）。',o:['规定了所有日常小事','具有最高法律效力','由地方政府制定','只适用于成年人'],a:1,e:'宪法规定国家生活中根本性、全局性问题，具有最高法律地位、法律权威和法律效力。',t:'根本法：根本问题+最高效力。'},
-  {m:'宪法与权利',s:'八年级下册',q:'行使权利有界限。公民行使权利时不得（ ）。',o:['尊重他人合法权利','损害国家、社会、集体利益和其他公民合法权益','采用合法方式维权','在法律允许范围内表达意见'],a:1,e:'任何权利都是有范围的，行使权利不得损害国家、社会、集体利益及他人合法权利。',t:'权利边界：不损害三类利益。'},
-  {m:'宪法与权利',s:'八年级下册',q:'公民维护权利的方式包括（ ）。',o:['协商、调解、仲裁、诉讼','造谣、辱骂、报复','围堵国家机关','以暴制暴'],a:0,e:'要依照法定程序维护权利，可通过协商、调解、仲裁和诉讼等方式。',t:'维权四方式要会背。'},
-  {m:'宪法与权利',s:'八年级下册',q:'依法纳税是公民的（ ）。',o:['基本权利','基本义务','个人选择','道德倡议'],a:1,e:'依法纳税是公民的基本义务，违反税法可能承担法律责任。',t:'基本义务常考：劳动、受教育、依法纳税等。'},
-  {m:'宪法与权利',s:'八年级下册',q:'受教育既是公民的基本权利，也是公民的（ ）。',o:['基本义务','政治权利','人格尊严权','财产权'],a:0,e:'受教育对个人和国家发展都有重要意义，既是权利也是义务。',t:'劳动、受教育都具有权利义务双重性。'},
-  {m:'制度与国家机构',s:'八年级下册',q:'我国的国家性质是（ ）。',o:['人民民主专政的社会主义国家','资本主义国家','君主立宪制国家','联邦制国家'],a:0,e:'我国是工人阶级领导的、以工农联盟为基础的人民民主专政的社会主义国家。',t:'国家性质考完整表述。'},
-  {m:'制度与国家机构',s:'八年级下册',q:'国务院是我国的（ ）。',o:['最高国家权力机关','最高国家行政机关','最高审判机关','最高监察机关'],a:1,e:'国务院即中央人民政府，是最高国家行政机关。',t:'国务院=最高行政机关。'},
-  {m:'制度与国家机构',s:'八年级下册',q:'监察委员会的职责主要包括（ ）。',o:['立法、任免、决定','监督、调查、处置','审判、执行、调解','政治协商、民主监督、参政议政'],a:1,e:'监察委员会是行使监察职能的专责机关，依法履行监督、调查、处置职责。',t:'监察委：监督调查处置。'},
-  {m:'制度与国家机构',s:'八年级下册',q:'国家主席行使的职权包括（ ）。',o:['公布法律、发布命令','审理民事案件','制定地方性法规','管理基层公共事务'],a:0,e:'国家主席代表国家，行使公布法律、发布命令、外事、授予荣誉等职权。',t:'主席常考“四类职权”。'},
-  {m:'富强与创新',s:'九年级上册',q:'我国经济已由高速增长阶段转向（ ）。',o:['低速停滞阶段','高质量发展阶段','完全不发展阶段','只依赖资源阶段'],a:1,e:'我国经济发展进入新常态，已由高速增长阶段转向高质量发展阶段。',t:'新常态=高质量发展。'},
-  {m:'富强与创新',s:'九年级上册',q:'发展的根本目的是（ ）。',o:['增进民生福祉','追求速度第一','扩大贫富差距','只增加财政收入'],a:0,e:'党和政府坚持以人民为中心的发展思想，发展的根本目的是增进民生福祉。',t:'根本目的：民生福祉。'},
-  {m:'富强与创新',s:'九年级上册',q:'企业是推动创新创造的（ ）。',o:['唯一主体','生力军','旁观者','阻碍力量'],a:1,e:'企业是社会创新的重要力量，是推动创新创造的生力军。',t:'企业=创新创造生力军。'},
-  {m:'富强与创新',s:'九年级上册',q:'保护知识产权需要青少年（ ）。',o:['购买盗版产品','尊重他人知识产权，也保护自己的知识产权','随意转载他人成果','认为知识产权与自己无关'],a:1,e:'创新时代既要尊重他人的知识产权，也要学会保护自己的知识产权。',t:'尊重+保护，双向记忆。'},
-  {m:'富强与创新',s:'九年级上册',q:'改革创新精神的内涵包括（ ）。',o:['与时俱进、锐意进取、勤于探索、勇于实践','因循守旧、安于现状','排斥一切新事物','只依赖他人经验'],a:0,e:'改革创新精神要求与时俱进、锐意进取、勤于探索、勇于实践。',t:'四词组合高频出现。'},
-  {m:'文明与家园',s:'九年级上册',q:'中华文化的特点是（ ）。',o:['源远流长、博大精深','完全封闭、拒绝交流','只属于古代','没有创新发展'],a:0,e:'中华文化源远流长、博大精深，薪火相传、历久弥新。',t:'中华文化：源远流长+博大精深。'},
-  {m:'文明与家园',s:'九年级上册',q:'中华民族精神的核心是（ ）。',o:['爱国主义','团结统一','爱好和平','自强不息'],a:0,e:'中华民族精神以爱国主义为核心，具有团结统一、爱好和平、勤劳勇敢、自强不息等内涵。',t:'核心只有爱国主义。'},
-  {m:'文明与家园',s:'九年级上册',q:'文化自信是对自身文化价值的充分肯定和（ ）。',o:['完全否定外来文化','坚定信念','拒绝文化交流','盲目崇拜传统'],a:1,e:'文化自信来自对时代发展潮流、中国特色社会主义伟大实践和自身文化价值的充分肯定。',t:'自信不等于自大、封闭。'},
-  {m:'文明与家园',s:'九年级上册',q:'建设美丽中国，要处理好人与自然的关系，做到（ ）。',o:['先污染后治理','人与自然和谐共生','只发展经济不保护环境','无限制开发资源'],a:1,e:'人与自然相互依存、共生共荣，要坚持人与自然和谐共生。',t:'生态文明：和谐共生。'},
-  {m:'文明与家园',s:'九年级上册',q:'绿水青山就是金山银山，说明（ ）。',o:['保护环境会阻碍发展','要坚持绿色发展道路','经济发展不需要资源','环境问题能自动解决'],a:1,e:'绿色发展是可持续发展的必要条件，要处理好经济发展与生态保护的关系。',t:'绿水青山=绿色发展。'},
-  {m:'文明与家园',s:'九年级上册',q:'实现中国梦必须走中国道路、弘扬中国精神、凝聚（ ）。',o:['中国力量','个人力量','外来力量','市场力量'],a:0,e:'实现中国梦必须走中国道路、弘扬中国精神、凝聚中国力量。',t:'中国梦“三个必须”。'},
-  {m:'文明与家园',s:'九年级上册',q:'“时代精神”的核心是（ ）。',o:['改革创新','爱国主义','诚实守信','勤劳勇敢'],a:0,e:'以改革创新为核心的时代精神与以爱国主义为核心的民族精神相结合。',t:'民族精神看爱国，时代精神看改革创新。'},
-  {m:'法治中国',s:'九年级上册',q:'全面依法治国的根本遵循和行动指南是（ ）。',o:['宪法','地方性法规','部门规章','道德规范'],a:0,e:'宪法是党和人民意志的集中体现，是国家的根本法，是治国安邦的总章程。',t:'依法治国根本依据是宪法。'},
-  {m:'法治中国',s:'九年级上册',q:'法治要求实行良法之治，还要求（ ）。',o:['善治','人治','德治取代法治','只靠个人权威'],a:0,e:'法治要求实行良法之治；法治还要求善治，即建立在民主基础上的法治。',t:'法治：良法+善治。'},
-  {m:'法治中国',s:'九年级上册',q:'政府依法行政的核心是（ ）。',o:['规范政府的行政权','扩大政府权力','代替司法机关审判','减少公民监督'],a:0,e:'依法行政要求政府及其工作人员在行使行政权力、管理公共事务时由宪法法律授权。',t:'依法行政核心：规范行政权。'},
-  {m:'法治中国',s:'九年级上册',q:'厉行法治需要全体社会成员（ ）。',o:['尊法学法守法用法','只依赖执法机关','用道德替代法律','认为法律与自己无关'],a:0,e:'厉行法治是对全体社会成员的共同要求，要尊法学法守法用法。',t:'四个“法”要成组记。'},
-  {m:'法治中国',s:'九年级上册',q:'法治与德治的关系是（ ）。',o:['二者相互对立','法律与道德相辅相成，法治与德治相得益彰','德治可以完全取代法治','只需依靠法律'],a:1,e:'国家和社会治理需要法律和道德共同发挥作用，法治与德治相得益彰。',t:'法治德治：相辅相成。'},
-  {m:'法治中国',s:'九年级上册',q:'公民参与民主生活需要（ ）。',o:['不断积累民主知识，形成尊重宽容批判协商的民主态度','只表达个人情绪','拒绝监督政府工作','不遵守参与规则'],a:0,e:'公民要增强民主意识，自觉增强宪法意识，依法有序参与民主生活。',t:'民主参与要理性、有序。'},
-  {m:'法治中国',s:'九年级上册',q:'民主监督有利于（ ）。',o:['国家机关工作人员改进工作、提高效率','公民获得凌驾法律的权利','取消政府管理','只解决个人私事'],a:0,e:'民主监督有利于国家机关和工作人员改进工作、提高工作效率，克服官僚主义。',t:'监督：改进工作、提高效率。'},
-  {m:'法治中国',s:'九年级上册',q:'参与民主决策的方式有（ ）。',o:['社情民意反映制度、专家咨询制度、重大事项社会公示制度和社会听证制度','暴力威胁','网络造谣','私下贿赂'],a:0,e:'公民可通过多种制度化渠道参与民主决策。',t:'四种民主决策制度。'},
-  {m:'世界与少年担当',s:'九年级下册',q:'当今世界的特征之一是（ ）。',o:['开放、发展、紧密联系','彼此完全隔绝','只有竞争没有合作','任何国家都能独立解决所有问题'],a:0,e:'这是一个开放、发展、紧密联系的世界，国家间相互联系与依存程度加深。',t:'世界特征三词。'},
-  {m:'世界与少年担当',s:'九年级下册',q:'经济全球化的表现包括（ ）。',o:['商品生产在全球范围内完成、商品贸易在全球范围内进行','各国完全关闭市场','文化交流全部停止','国际合作减少'],a:0,e:'经济全球化表现为商品生产全球化和商品贸易全球化。',t:'全球化：生产+贸易。'},
-  {m:'世界与少年担当',s:'九年级下册',q:'面对经济全球化，我们应该（ ）。',o:['顺应历史潮流，保持积极开放心态','完全排斥外来商品','只追求眼前利益','拒绝国际合作'],a:0,e:'经济全球化是大势所趋，要顺应潮流、保持积极开放心态，居安思危。',t:'态度：顺应、开放、居安思危。'},
-  {m:'世界与少年担当',s:'九年级下册',q:'构建人类命运共同体，需要各国（ ）。',o:['相互推诿责任','努力扩大利益交汇点，谋求开放创新包容互惠发展','只维护本国短期利益','放弃一切国家利益'],a:1,e:'面对全球性问题，各国要采取共同行动，承担共同责任，构建人类命运共同体。',t:'共同问题要共同解决。'},
-  {m:'世界与少年担当',s:'九年级下册',q:'中国在国际舞台上的做法符合负责任大国形象的是（ ）。',o:['积极参与全球治理，提出中国方案','逃避国际责任','干涉他国内政','拒绝一切国际援助'],a:0,e:'中国积极参与全球治理体系建设和改革，贡献中国智慧和中国力量。',t:'中国担当：积极有作为。'},
-  {m:'世界与少年担当',s:'九年级下册',q:'青少年面对世界需要（ ）。',o:['只关注个人小圈子','树立全球观念，关切人类命运','拒绝了解不同文化','认为世界与自己无关'],a:1,e:'青少年要树立全球视野，关注世界发展，尊重文化差异。',t:'少年要有世界眼光。'},
-  {m:'世界与少年担当',s:'九年级下册',q:'职业选择应考虑（ ）。',o:['自己的兴趣爱好、能力特长和社会需要','只看收入高低','完全由他人决定','逃避任何劳动'],a:0,e:'要做好职业准备，进行职业选择时考虑兴趣、能力和社会需求，规划未来。',t:'职业选择三方面。'},
-  {m:'世界与少年担当',s:'九年级下册',q:'初中毕业面临多种选择，我们应（ ）。',o:['随意作出决定','理性分析主客观条件，慎重选择','完全跟随同学选择','拒绝听取任何建议'],a:1,e:'要结合自身实际，理性分析，作出合理选择，并为未来发展做好准备。',t:'选择要理性、负责。'},
-  {m:'国家安全与民族团结',s:'八年级·浦东高频',q:'总体国家安全观以（ ）为宗旨。',o:['人民安全','政治安全','经济安全','军事安全'],a:0,e:'总体国家安全观以人民安全为宗旨，以政治安全为根本，以经济安全为基础。',t:'宗旨人民，根本政治，基础经济。'},
-  {m:'国家安全与民族团结',s:'八年级·浦东高频',q:'维护和促进民族团结，是每个公民的（ ）。',o:['权利','神圣职责和光荣义务','个人爱好','可做可不做的选择'],a:1,e:'维护和促进民族团结，是每个公民的神圣职责和光荣义务。',t:'民族团结：职责和义务。'},
-  {m:'国家安全与民族团结',s:'八年级·浦东高频',q:'国家利益与个人利益的关系是（ ）。',o:['完全对立','在根本上是一致的','个人利益永远高于国家利益','国家利益与个人无关'],a:1,e:'国家利益反映广大人民的共同需求，国家利益与个人利益在根本上是一致的。',t:'根本一致，国家利益至上。'},
-  {m:'国家安全与民族团结',s:'八年级·浦东高频',q:'发现危害国家安全的行为，公民应当（ ）。',o:['置之不理','及时向国家安全机关或公安机关报告','在网络上直播细节','自行采取暴力手段'],a:1,e:'维护国家安全需要提高防范意识和能力，发现危害国家安全行为及时报告。',t:'发现危害安全：及时报告。'},
-  {m:'国家安全与民族团结',s:'八年级·浦东高频',q:'我国处理民族关系的方针是（ ）。',o:['民族平等、民族团结和各民族共同繁荣','民族分离、各自发展','同化少数民族文化','只发展人口多的民族'],a:0,e:'我国坚持民族平等、民族团结和各民族共同繁荣的方针。',t:'民族关系方针三句话。'},
-  {m:'国家安全与民族团结',s:'八年级·浦东高频',q:'“一国两制”的前提是（ ）。',o:['一个中国原则','高度自治等于完全自治','两个中国','台湾独立'],a:0,e:'“一个国家，两种制度”必须坚持一个中国原则，国家主权和领土完整不容分割。',t:'一国是前提和基础。'},
-  {m:'国家安全与民族团结',s:'八年级·浦东高频',q:'维护国家荣誉包括（ ）。',o:['维护国家尊严不受侵犯','诋毁国家形象','泄露国家秘密','损害国格人格'],a:0,e:'维护国家荣誉包括维护国家尊严不受侵犯、国家荣誉不受玷污。',t:'安全、荣誉、利益均需维护。'},
-  {m:'道德与法治综合',s:'易错辨析',q:'下列观点正确的是（ ）。',o:['道德靠强制性手段保证实施','法律是由国家制定或认可的','违反道德必然构成犯罪','法律只约束未成年人'],a:1,e:'法律由国家制定或认可，由国家强制力保证实施，对全体社会成员具有普遍约束力。',t:'法律三特征：国家制定、强制力、普遍约束。'},
-  {m:'道德与法治综合',s:'易错辨析',q:'犯罪的最本质特征是（ ）。',o:['严重社会危害性','刑事违法性','应受刑罚处罚性','道德谴责性'],a:0,e:'严重社会危害性是犯罪的最本质特征；刑事违法性是法律标志，应受刑罚处罚性是必然后果。',t:'犯罪三特征，最本质是严重危害性。'},
-  {m:'道德与法治综合',s:'易错辨析',q:'预防犯罪，需要我们（ ）。',o:['从小事做起，杜绝不良行为','认为未成年人不会犯罪','只在被发现后改正','用违法方式保护自己'],a:0,e:'不良行为、严重不良行为与犯罪之间没有不可逾越的鸿沟，要防微杜渐。',t:'预防犯罪：防微杜渐。'},
-  {m:'道德与法治综合',s:'易错辨析',q:'遇到不法侵害时，青少年应（ ）。',o:['不顾后果地硬拼','依法求助，善于斗争、见义智为','忍气吞声不求助','用同样违法方式报复'],a:1,e:'要敢于并善于依法维护正当权益，必要时寻求法律救助，见义智为。',t:'见义勇为更要见义智为。'},
-  {m:'道德与法治综合',s:'易错辨析',q:'公平通常指人们基于一定标准或原则，处理事情（ ）。',o:['合情合理、不偏不倚','完全平均、没有差异','只照顾强者','由少数人任意决定'],a:0,e:'公平是相对的，强调权利公平、规则公平、机会公平等。',t:'公平不等于平均。'},
-  {m:'道德与法治综合',s:'易错辨析',q:'正义制度的价值在于（ ）。',o:['保障社会成员的生存和发展','制造更多特权','让违法者获益','排斥弱势群体'],a:0,e:'正义是社会文明的尺度，正义制度保障社会成员的生存和发展。',t:'正义：保障生存发展。'},
-  {m:'道德与法治综合',s:'易错辨析',q:'面对非正义行为，我们应（ ）。',o:['事不关己，高高挂起','坚守正义，依法维护公平正义','跟随多数人起哄','用暴力解决问题'],a:1,e:'个人守护正义要敢于斗争，讲究策略，依法维护正义。',t:'守护正义：敢于+善于。'},
-  {m:'道德与法治综合',s:'易错辨析',q:'“敬人者，人恒敬之。”说明在人际交往中要（ ）。',o:['尊重他人','控制他人','贬低他人','只尊重自己'],a:0,e:'尊重是交往的起点，尊重他人也会赢得他人的尊重。',t:'尊重是交往起点。'},
-];
-const pdfSupplementQuestions = [
-  {m:'法治中国',s:'2026考前重点补充',q:'国家创制法律的两种基本形式是（ ）。',o:['制定或认可','起草或宣传','教育或引导','监督或审判'],a:0,e:'国家创制法律的两种基本形式是制定和认可，且须经过一定法律程序。',t:'“创制法律”对应制定、认可。'},
-  {m:'法治中国',s:'2026考前重点补充',q:'法律区别于道德等行为规范的最主要特征是（ ）。',o:['由国家强制力保证实施','对全体社会成员具有约束力','保护公民合法权益','规范社会成员行为'],a:0,e:'法律由国家强制力保证实施，这是法律区别于道德、纪律等的最主要特征。',t:'最主要特征：国家强制力。'},
-  {m:'法治中国',s:'2026考前重点补充',q:'根据违反法律的类别，违法行为可分为（ ）。',o:['一般违法和严重违法','民事、行政和刑事违法行为','故意违法和过失违法','道德失范和违法行为'],a:1,e:'按违反法律的类别，违法行为分为民事违法、行政违法和刑事违法。',t:'按“类别”分三类；按“危害性”分两类。'},
-  {m:'法治中国',s:'2026考前重点补充',q:'根据社会危害性的不同，违法行为可分为（ ）。',o:['民事违法和行政违法','一般违法和严重违法','刑事违法和民事违法','故意违法和过失违法'],a:1,e:'一般违法行为包括民事违法和行政违法；严重违法行为即刑事违法行为（犯罪）。',t:'“危害性”对应一般违法、严重违法。'},
-  {m:'法治中国',s:'2026考前重点补充',q:'犯罪最本质的特征是（ ）。',o:['严重社会危害性','触犯刑法','应受刑罚处罚','违反道德规范'],a:0,e:'犯罪具有严重社会危害性、刑事违法性和应受刑罚处罚性，其中最本质特征是严重社会危害性。',t:'犯罪最本质：严重社会危害性。'},
-  {m:'法治中国',s:'2026考前重点补充',q:'下列属于我国主刑的是（ ）。',o:['罚金','剥夺政治权利','有期徒刑','没收财产'],a:2,e:'主刑包括管制、拘役、有期徒刑、无期徒刑和死刑；其余属于附加刑。',t:'主刑“五种”，附加刑“四种”。'},
-  {m:'法治中国',s:'2026考前重点补充',q:'小李因违法受到罚款处罚。这种制裁属于（ ）。',o:['刑罚处罚','行政处罚','民事赔偿','道德谴责'],a:1,e:'行政制裁包括行政处分和行政处罚；罚款属于行政处罚。',t:'行政制裁：处分+处罚。'},
-  {m:'法治中国',s:'2026考前重点补充',q:'受到非法侵害时，公民可以向下列哪一机关控告、举报？（ ）。',o:['公安机关','任何商业机构','同学会','网络平台客服'],a:0,e:'公民可依法向公安机关、人民法院或人民检察院中的任一机关控告、举报。',t:'维权求助可找公安、法院、检察院。'},
-  {m:'法治中国',s:'2026考前重点补充',q:'当事人提起诉讼，应当向（ ）。',o:['人民法院','人民政府','人民检察院','居民委员会'],a:0,e:'诉讼是人民法院在诉讼当事人参与下，依照法定程序解决纠纷和冲突的活动。',t:'提起诉讼找人民法院。'},
-  {m:'法治中国',s:'2026考前重点补充',q:'诉讼通常分为（ ）。',o:['民事诉讼、行政诉讼、刑事诉讼','民事诉讼、经济诉讼、纪律诉讼','行政诉讼、家庭诉讼、刑事诉讼','调解、仲裁、诉讼'],a:0,e:'诉讼通常分为民事诉讼、行政诉讼和刑事诉讼三种类型。',t:'三类诉讼：民事、行政、刑事。'},
-  {m:'宪法与权利',s:'2026考前重点补充',q:'在我国，未成年人是指（ ）。',o:['未满十六周岁的公民','未满十八周岁的公民','正在读初中的学生','没有独立收入的人'],a:1,e:'在我国，未成年人是指未满十八周岁的公民。',t:'未成年人：未满18周岁。'},
-  {m:'宪法与权利',s:'2026考前重点补充',q:'保护未成年人合法权益的四道防线是（ ）。',o:['家庭、学校、社会和司法保护','家庭、社区、网络和司法保护','父母、教师、同学和警察保护','教育、道德、法律和纪律保护'],a:0,e:'保护未成年人合法权益的四道防线是家庭保护、学校保护、社会保护和司法保护。',t:'四道防线：家、校、社、司。'},
-];
-seedQuestions.push(...extraQuestions, ...pdfSupplementQuestions);
+  const bank = window.QUESTION_BANK || [];
+  const storageKey = "daofa-practice-progress";
+  const categories = ["全部栏目", ...new Set(bank.map((item) => item.category))];
+  const state = {
+    category: "全部栏目",
+    mode: "fill",
+    blankSide: "answer",
+    index: 0,
+    answer: "",
+    selected: "",
+    submitted: false,
+    correct: 0,
+    attempts: 0,
+    streak: 0,
+  };
+  let choiceCacheKey = "";
+  let choiceCache = [];
 
-// 每题对应一个独立知识点或真实情境；不使用换问法、换选项顺序的变式题。
-const questions = seedQuestions.map((item, index) => ({ ...item, id: `knowledge-${index + 1}` }));
+  const $ = (id) => document.getElementById(id);
+  const normalize = (value) => String(value || "").replace(/[\s，。；：、,.!?！？“”‘’（）()「」]/g, "").toLowerCase();
+  const shuffle = (items) => [...items].sort(() => Math.random() - 0.5);
 
-const map = [
-  ['成长与学习','中学生活、学习方法、认识自己、友谊、师生与亲情。'],
-  ['青春·情绪·集体','青春期、情绪调节、集体规则、美好集体与责任担当。'],
-  ['社会责任与网络','亲社会行为、网络生活、诚信、劳动、服务社会。'],
-  ['宪法与权利','宪法地位、基本权利义务、依法维权与权利边界。'],
-  ['制度与国家机构','人大制度、政协、基层自治、国家机构的性质与职权。'],
-  ['富强与创新','基本经济制度、改革开放、共同富裕、创新教育。'],
-  ['文明与家园','核心价值观、中华文化、民族精神、生态文明、中国梦。'],
-  ['法治中国','良法善治、依法行政、民主参与、法治与德治。'],
-  ['世界与少年担当','经济全球化、人类命运共同体、中国担当与职业选择。'],
-  ['国家安全与民族团结','总体国家安全观、国家利益、民族团结与祖国统一。'],
-];
-const PROGRESS_KEY = 'df-progress-v2';
-const savedProgress = JSON.parse(localStorage.getItem(PROGRESS_KEY) || 'null');
-const questionById = new Map(questions.map(question => [question.id, question]));
-const restoredQueue = savedProgress?.queueIds?.map(id => questionById.get(id)).filter(Boolean) || [];
-const state = {
-  mode: savedProgress?.mode || 'practice',
-  module: savedProgress?.module || '全部模块',
-  queue: restoredQueue.length ? restoredQueue : [...questions],
-  index: Math.max(0, Math.min(savedProgress?.index || 0, Math.max(0, (restoredQueue.length || questions.length) - 1))),
-  answered: savedProgress?.answered || {},
-  starred: new Set(JSON.parse(localStorage.getItem('df-stars') || '[]')),
-  restoredQueue: restoredQueue.length > 0,
-};
-const $ = id => document.getElementById(id);
-const moduleFilter = $('module-filter');
-['全部模块',...map.map(x=>x[0])].forEach(m=>moduleFilter.add(new Option(m,m)));
-moduleFilter.value = state.module;
-document.querySelectorAll('.mode').forEach(button => button.classList.toggle('active', button.dataset.mode === state.mode));
-function saveProgress(){
-  localStorage.setItem(PROGRESS_KEY, JSON.stringify({
-    mode: state.mode, module: state.module, index: state.index,
-    queueIds: state.queue.map(question => question.id), answered: state.answered,
-  }));
-}
-function shuffle(arr){return [...arr].sort(()=>Math.random()-.5)}
-function rebuild(){
-  let base=state.module==='全部模块'?questions:questions.filter(x=>x.m===state.module);
-  if(state.mode==='random') base=shuffle(base).slice(0,10);
-  if(state.mode==='wrong') base=base.filter(q=>state.answered[q.id]?.correct===false);
-  state.queue=base; state.index=Math.min(state.index,Math.max(0,base.length-1)); state.restoredQueue=false; saveProgress(); render();
-}
-function render(){
-  const q=state.queue[state.index]; const total=state.queue.length;
-  $('question-count').textContent=total?`第 ${state.index+1} / ${total} 题`:'暂无错题，继续保持！';
-  $('progress-fill').style.width=total?`${(state.index+1)/total*100}%`:'0%';
-  if(!q){$('question-card').classList.add('empty');$('question-text').textContent='暂时没有符合条件的题目';$('options').innerHTML='<p>换一个模块，或先在顺序练习中完成几题。</p>';$('feedback').classList.add('hidden');return;}
-  $('question-card').classList.remove('empty'); $('module-name').textContent=q.m; $('source-badge').textContent=q.s; $('question-text').textContent=q.q;
-  $('mark-question').textContent=state.starred.has(q.id)?'★':'☆';
-  const saved=state.answered[q.id]; $('options').innerHTML='';
-  q.o.forEach((text,i)=>{const b=document.createElement('button');b.className='option';b.setAttribute('role','radio');b.innerHTML=`<span class="option-letter">${'ABCD'[i]}</span><span>${text}</span>`;if(saved){b.disabled=true;if(i===q.a)b.classList.add('correct');if(i===saved.choice&&i!==q.a)b.classList.add('wrong')} b.onclick=()=>answer(q,i);$('options').appendChild(b)});
-  if(saved){showFeedback(q,saved.correct)}else $('feedback').classList.add('hidden');
-}
-function answer(q,choice){if(state.answered[q.id])return;const correct=choice===q.a;state.answered[q.id]={choice,correct};saveProgress();render();}
-function showFeedback(q,correct){const box=$('feedback');box.className=`feedback ${correct?'correct':'wrong'}`;$('feedback-title').textContent=correct?'回答正确！':'这题先记住正确判断。';$('explanation').textContent=`答案：${'ABCD'[q.a]}。${q.e}`;$('memory-tip').textContent=`记忆提示：${q.t}`;}
-function score(){const vals=Object.values(state.answered);const right=vals.filter(x=>x.correct).length;$('score').textContent=`${right} / ${vals.length}`;$('accuracy').textContent=vals.length?`正确率 ${Math.round(right/vals.length*100)}%`:'正确率 --';}
-document.querySelectorAll('.mode').forEach(b=>b.onclick=()=>{state.mode=b.dataset.mode;state.index=0;document.querySelectorAll('.mode').forEach(x=>x.classList.toggle('active',x===b));rebuild();});
-moduleFilter.onchange=e=>{state.module=e.target.value;state.index=0;rebuild()};$('next-question').onclick=()=>{if(state.index<state.queue.length-1){state.index++;saveProgress();render()}};$('prev-question').onclick=()=>{if(state.index>0){state.index--;saveProgress();render()}};$('mark-question').onclick=()=>{const q=state.queue[state.index];if(state.starred.has(q.id))state.starred.delete(q.id);else state.starred.add(q.id);localStorage.setItem('df-stars',JSON.stringify([...state.starred]));saveProgress();render()};$('reset-progress').onclick=()=>{state.answered={};state.index=0;rebuild()};
-const grid=$('knowledge-grid');map.forEach(([title,text])=>{const el=document.createElement('div');el.className='knowledge-item';el.innerHTML=`<strong>${title}</strong><p>${text}</p>`;grid.appendChild(el)});
-const observer=new MutationObserver(score);observer.observe($('options'),{childList:true});$('bank-count').textContent=`当前题库 ${questions.length.toLocaleString()} 道独立选择题 · 按知识点持续补充`;if(state.restoredQueue)render();else rebuild();score();
+  function parseKnowledge(text) {
+    let separator = text.indexOf("：");
+    if (separator > 0 && separator < text.length - 1) {
+      return { prompt: text.slice(0, separator + 1), answer: text.slice(separator + 1).trim() };
+    }
+    for (const marker of ["是：", "是", "为：", "为"]) {
+      separator = text.indexOf(marker);
+      if (separator > 1 && separator < text.length - marker.length) {
+        return { prompt: text.slice(0, separator + marker.length), answer: text.slice(separator + marker.length).trim() };
+      }
+    }
+    separator = text.indexOf("，");
+    if (separator > 4 && separator < text.length - 1) {
+      return { prompt: text.slice(0, separator + 1), answer: text.slice(separator + 1).trim() };
+    }
+    separator = Math.ceil(text.length * 0.38);
+    return { prompt: text.slice(0, separator), answer: text.slice(separator) };
+  }
+
+  function keywordFromPrompt(prompt) {
+    return prompt.replace(/(是|为|：|:|以[^，。；]*为)$/, "").trim();
+  }
+
+  function filteredBank() {
+    return state.category === "全部栏目" ? bank : bank.filter((item) => item.category === state.category);
+  }
+
+  function currentQuestion() {
+    const list = filteredBank();
+    return list[state.index % Math.max(list.length, 1)] || bank[0];
+  }
+
+  function targetFor(question) {
+    const parsed = parseKnowledge(question.text);
+    return state.blankSide === "answer" ? parsed.answer : keywordFromPrompt(parsed.prompt);
+  }
+
+  function choicesFor(question) {
+    const key = `${question.id}:${state.blankSide}`;
+    if (key === choiceCacheKey) return choiceCache;
+    const correct = targetFor(question);
+    const distractors = bank
+      .filter((item) => item.id !== question.id)
+      .map((item) => {
+        const parsed = parseKnowledge(item.text);
+        return state.blankSide === "answer" ? parsed.answer : keywordFromPrompt(parsed.prompt);
+      })
+      .filter((value) => value && normalize(value) !== normalize(correct));
+    choiceCacheKey = key;
+    choiceCache = shuffle([correct, ...shuffle(distractors).slice(0, 3)]);
+    return choiceCache;
+  }
+
+  function saveProgress() {
+    localStorage.setItem(storageKey, JSON.stringify({
+      category: state.category,
+      mode: state.mode,
+      blankSide: state.blankSide,
+      index: state.index,
+      correct: state.correct,
+      attempts: state.attempts,
+      streak: state.streak,
+    }));
+  }
+
+  function restoreProgress() {
+    try {
+      const saved = JSON.parse(localStorage.getItem(storageKey) || "null");
+      if (!saved) return;
+      if (categories.includes(saved.category)) state.category = saved.category;
+      if (["fill", "choice"].includes(saved.mode)) state.mode = saved.mode;
+      if (["answer", "keyword"].includes(saved.blankSide)) state.blankSide = saved.blankSide;
+      ["index", "correct", "attempts", "streak"].forEach((key) => {
+        if (Number.isFinite(saved[key])) state[key] = saved[key];
+      });
+    } catch (_) {
+      localStorage.removeItem(storageKey);
+    }
+  }
+
+  function resetQuestion() {
+    state.answer = "";
+    state.selected = "";
+    state.submitted = false;
+    choiceCacheKey = "";
+  }
+
+  function renderControls() {
+    $("category-select").value = state.category;
+    $("fill-mode").className = state.mode === "fill" ? "active" : "";
+    $("choice-mode").className = state.mode === "choice" ? "active" : "";
+    $("answer-side").className = state.blankSide === "answer" ? "active" : "";
+    $("keyword-side").className = state.blankSide === "keyword" ? "active" : "";
+  }
+
+  function renderStats() {
+    const accuracy = state.attempts ? Math.round((state.correct / state.attempts) * 100) : 0;
+    const today = Math.min(state.attempts, 20);
+    $("accuracy").textContent = `${accuracy}%`;
+    $("streak").textContent = state.streak;
+    $("today-count").textContent = today;
+    $("progress-bar").style.width = `${Math.min(today / 20, 1) * 100}%`;
+    $("goal-message").textContent = today >= 20 ? "今日目标已完成，继续保持" : `再答 ${20 - today} 题完成今日目标`;
+  }
+
+  function renderQuestion() {
+    const question = currentQuestion();
+    const parsed = parseKnowledge(question.text);
+    const target = targetFor(question);
+    const hiddenPrompt = state.blankSide === "answer" ? parsed.prompt : "";
+    const hiddenAnswer = state.blankSide === "answer" ? parsed.answer : parsed.answer;
+    const placeholder = state.blankSide === "answer" ? "请输入答案" : "请输入关键词";
+    $("question-id").textContent = question.id;
+    $("question-total").textContent = bank.length;
+    $("question-category").textContent = question.category;
+    $("blank-label").textContent = state.blankSide === "answer" ? "答案" : "关键词";
+    $("source-text").textContent = question.text;
+    $("question-prompt").innerHTML = `${escapeHtml(hiddenPrompt)}<span class="inline-blank">${state.submitted ? escapeHtml(target) : placeholder}</span>${state.blankSide === "keyword" ? escapeHtml(hiddenAnswer) : ""}`;
+    $("hint").textContent = state.mode === "fill" ? "提示：关键词顺序正确即可得分" : "提示：先判断它属于哪个知识点栏目";
+
+    if (state.mode === "fill") {
+      $("answer-view").innerHTML = `<div class="answer-area"><label for="answer">你的答案</label><div class="answer-row"><input id="answer" placeholder="填写${state.blankSide === "answer" ? "答案" : "关键词"}…" autocomplete="off" value="${escapeAttribute(state.answer)}" ${state.submitted ? "disabled" : ""} /><button class="submit-btn" id="submit-answer" ${!state.answer.trim() || state.submitted ? "disabled" : ""}>提交答案 <span>↗</span></button></div>${state.submitted ? feedbackHtml(normalize(state.answer) === normalize(target), target) : ""}</div>`;
+      $("answer").addEventListener("input", (event) => {
+        state.answer = event.target.value;
+        $("submit-answer").disabled = !state.answer.trim();
+      });
+      $("answer").addEventListener("keydown", (event) => {
+        if (event.key === "Enter") submitFill();
+      });
+      $("submit-answer").addEventListener("click", submitFill);
+    } else {
+      const options = choicesFor(question);
+      $("answer-view").innerHTML = `<div class="choice-grid">${options.map((option, index) => `<button class="choice-btn ${state.selected === option ? "selected" : ""} ${state.submitted && normalize(option) === normalize(target) ? "correct-choice" : ""} ${state.submitted && state.selected === option && normalize(option) !== normalize(target) ? "wrong-choice" : ""}" data-choice="${escapeAttribute(option)}"><span>${String.fromCharCode(65 + index)}</span>${escapeHtml(option)}</button>`).join("")}</div>${state.submitted ? feedbackHtml(normalize(state.selected) === normalize(target), target) : ""}`;
+      document.querySelectorAll("[data-choice]").forEach((button) => button.addEventListener("click", () => chooseOption(button.dataset.choice)));
+    }
+  }
+
+  function feedbackHtml(correct, target) {
+    return `<div class="feedback ${correct ? "good" : "bad"}"><div class="feedback-icon">${correct ? "✓" : "!"}</div><div><b>${correct ? "答对了，稳！" : "再想一想"}</b><p>标准答案：${escapeHtml(target)}</p></div></div>`;
+  }
+
+  function submitFill() {
+    if (state.submitted || !state.answer.trim()) return;
+    const correct = normalize(state.answer) === normalize(targetFor(currentQuestion()));
+    state.submitted = true;
+    state.attempts += 1;
+    state.correct += correct ? 1 : 0;
+    state.streak = correct ? state.streak + 1 : 0;
+    saveProgress();
+    render();
+  }
+
+  function chooseOption(value) {
+    if (state.submitted) return;
+    const correct = normalize(value) === normalize(targetFor(currentQuestion()));
+    state.selected = value;
+    state.submitted = true;
+    state.attempts += 1;
+    state.correct += correct ? 1 : 0;
+    state.streak = correct ? state.streak + 1 : 0;
+    saveProgress();
+    render();
+  }
+
+  function nextQuestion(random) {
+    const list = filteredBank();
+    if (random) {
+      state.index = (state.index + Math.floor(Math.random() * Math.max(list.length - 1, 1)) + 1) % Math.max(list.length, 1);
+    } else {
+      state.index = (state.index + 1) % Math.max(list.length, 1);
+    }
+    resetQuestion();
+    saveProgress();
+    render();
+  }
+
+  function setCategory(category) {
+    state.category = category;
+    state.index = 0;
+    resetQuestion();
+    saveProgress();
+    render();
+  }
+
+  function setMode(mode) {
+    state.mode = mode;
+    resetQuestion();
+    saveProgress();
+    render();
+  }
+
+  function setBlankSide(side) {
+    state.blankSide = side;
+    resetQuestion();
+    saveProgress();
+    render();
+  }
+
+  function clearProgress() {
+    if (!window.confirm("确定要清空本地刷题进度吗？")) return;
+    localStorage.removeItem(storageKey);
+    state.category = "全部栏目";
+    state.mode = "fill";
+    state.blankSide = "answer";
+    state.index = 0;
+    state.correct = 0;
+    state.attempts = 0;
+    state.streak = 0;
+    resetQuestion();
+    render();
+  }
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" }[char]));
+  }
+
+  function escapeAttribute(value) {
+    return escapeHtml(value).replace(/`/g, "&#096;");
+  }
+
+  function render() {
+    renderControls();
+    renderStats();
+    renderQuestion();
+  }
+
+  function init() {
+    $("bank-count").textContent = bank.length;
+    categories.forEach((category) => {
+      const option = document.createElement("option");
+      option.value = category;
+      option.textContent = category;
+      $("category-select").appendChild(option);
+    });
+    restoreProgress();
+    $("category-select").addEventListener("change", (event) => setCategory(event.target.value));
+    $("fill-mode").addEventListener("click", () => setMode("fill"));
+    $("choice-mode").addEventListener("click", () => setMode("choice"));
+    $("answer-side").addEventListener("click", () => setBlankSide("answer"));
+    $("keyword-side").addEventListener("click", () => setBlankSide("keyword"));
+    $("shuffle-question").addEventListener("click", () => nextQuestion(true));
+    $("next-question").addEventListener("click", () => nextQuestion(false));
+    $("clear-progress").addEventListener("click", clearProgress);
+    render();
+  }
+
+  document.addEventListener("DOMContentLoaded", init);
+})();
